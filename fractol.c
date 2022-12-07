@@ -6,7 +6,7 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:08:03 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/01 15:23:17 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:47:32 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
        the -L flag.
 	
 	
-	steps: create visual link, create windows and create image. 
-	go pixel by pixel on the image 
-	
+	next steps:
+	Organize and parse for different arguments/sets
+	handle color better, opitional color variations by key pressing
+	handle zoom and re-initializing the image.
 	   */
 
 
@@ -41,15 +42,18 @@
 
 int	main ()
 {
-	t_data 	f;
-	clean_init(&f);
-	mlx_setup(&f);
+	t_data 	*f;
+	f = malloc(sizeof(t_data));
+	if (!f)
+		return(-1);
+	clean_init(f);
+	mlx_setup(f);
 
-	gen_mandelbrot(&f);
-
+	gen_mandelbrot(f);
 
 // holds the screen for command.
-	mlx_loop(f.mlx);
+	mlx_key_hook(f->win, key_exit, f);
+	mlx_loop(f->mlx);
 
 	return (0);
 	

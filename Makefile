@@ -6,7 +6,7 @@
 #    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2022/12/01 15:25:26 by gmiyakaw         ###   ########.fr        #
+#    Updated: 2022/12/07 12:03:33 by gmiyakaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ NAMELIB	=	libftfractol.a
 LIB 	=	-L /Users/gmiyakaw/Documents/fract-ol libftfractol.a
 
 LINK 	=	-lmlx  -framework OpenGL -framework AppKit
-SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c
+SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c
 
 CC	=	gcc
 
