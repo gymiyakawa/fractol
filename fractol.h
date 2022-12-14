@@ -6,23 +6,45 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:53:30 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/07 16:25:38 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:09:15 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#define HEIGHT 1500
-#define LENGTH 1500
-#define MAX_ITERATION 60
-#define MLX_ERROR 1
+#define HEIGHT 800
+#define LENGTH 800
+#define MAX_ITERATION 25
+#define MANDELBROT 1
+#define JULIA 1
 #include "./libft/libft.h"
 #include  "./minilibx_opengl_20191021/mlx.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
 #include <math.h>
+
+enum {
+	W = 13,
+	A = 0,
+	S = 1,
+	D = 2,
+	UP_ARROW = 126,
+	DOWN_ARROW = 125,
+	LEFT_ARROW = 123,
+	RIGHT_ARROW = 124,
+	LEFT_CTRL = 256,
+	LEFT_ALT = 261,
+};
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	t;
+} t_color;
 
 
 typedef struct s_img
@@ -36,39 +58,61 @@ typedef struct s_img
 
 typedef	struct	s_data
 {
-	void	*mlx;
-	void	*win;
-	t_img	*img_data;
-	double	min_r;
-	double	max_r;
-	double	min_i;
-	double	max_i;
+	void			*mlx;
+	void			*win;
+	t_img			*img_data;
+	t_color			*color;
+	double			min_r;
+	double			max_r;
+	double			min_i;
+	double			max_i;
 	unsigned int 	count;
-	int		color_shift;
+	int				color_shift;
+	int				resolution_shift;
+	int				set;
+	double			center_i;
+	double			center_r;
 } t_data;
 
 
 // initialization functions 
-void clean_init(t_data *f);
-void mlx_setup(t_data *f);
+t_data 	clean_init();
+void	mlx_setup(t_data *f);
+void	command_list();
+
+// Sorting / Parsing functions
+void	sort_fractal(t_data *f, char *arg);
+int		generate_fractal(t_data *f);
+void 	set_minmax (t_data *f);
 
 // Mandelbrot functions
-int is_mandelbrot (double cr, double ci, t_data *f);
+int		is_mandelbrot (double cr, double ci, t_data *f);
 void	gen_mandelbrot(t_data *f);
+
+// Julia functions
+void	gen_julia(t_data	*f);
 
 // render and color functions
 void	my_px_put(t_img *img, int x, int y, int color);
-int	make_color (int count, int *color_shift);
-int	create_trgb(int t, int r, int g, int b);
+int		make_color (t_data *f);
+int		create_trgb(int t, int r, int g, int b);
 void	shift_color(t_data *f);
+void	apply_shift(t_data	*f);
+int 	get_red(int color_value);
+int 	get_green(int color_value);
+int 	get_blue(int color_value);
 
 // MISC functions
-int	ft_is_little_endian();
-int draw_line(void *mlx_ptr, void *n_window, int beginX,\
-					int beginY, int endX, int endY, int color);
+int		ft_is_little_endian();
 
-//void	myfree(void *p);
-int key_exit (int keycode, t_data *f);
-void clean_exit (t_data *f);
+//	exit functions
+void	clean_exit (t_data *f);
+
+// event handling functions:
+int		handle_keys (int keycode, t_data *f);
+int 	handle_mouse (int x, int y, int mousecode, t_data *f);
+void	zoom (t_data *f, double zoom);
+void	mouse_zoom (t_data *f, double zoom, int x, int y);
+void 	move (t_data *f, char direction);
 
 #endif 

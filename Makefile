@@ -6,7 +6,7 @@
 #    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2022/12/07 12:03:33 by gmiyakaw         ###   ########.fr        #
+#    Updated: 2022/12/14 10:33:17 by gmiyakaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,12 @@ OBJ	=	$(SRC:.c=.o)
 
 NAMELIB	=	libftfractol.a
 
-LIB 	=	-L /Users/gmiyakaw/Documents/fract-ol libftfractol.a
+LIB 	=	libft/libft.a
 
 LINK 	=	-lmlx  -framework OpenGL -framework AppKit
-SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c
 
+SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c \
+			parsing.c julia.c events.c
 CC	=	gcc
 
 CFLAGS	=	-Wall -Werror -Wextra
@@ -50,9 +51,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 				$(MAKE) bonus -C ./libft
-				cp ./libft/libft.a $(NAMELIB)
-				$(COMP) $(SRC) $(LIB) -o $(NAME) 
-				ar rcs $(NAMELIB) $(OBJ)
+				$(COMP) $(OBJ) -o $(NAME)
 clean:
 	$(RM) $(OBJ)
 	$(MAKE) fclean -C ./libft

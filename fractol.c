@@ -6,7 +6,7 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:08:03 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/07 15:47:32 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:40:14 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,48 @@
        specify  the path to the
        MiniLibX library,  using
        the -L flag.
-	
-	
+
 	next steps:
-	Organize and parse for different arguments/sets
-	handle color better, opitional color variations by key pressing
+	Make the Julia Set
 	handle zoom and re-initializing the image.
+	map and set all the possible events: clicking the x, minimizing etc
 	   */
 
 
 #include "fractol.h"
 
-int	main ()
+int	main (int ac, char **av)
 {
-	t_data 	*f;
-	f = malloc(sizeof(t_data));
-	if (!f)
-		return(-1);
-	clean_init(f);
-	mlx_setup(f);
+	if (ac != 2)
+	{
+		write(1, "error: missing name", 19);
+		return (-1);
+	}
+	t_data 	f;
 
-	gen_mandelbrot(f);
+	// parse and handle arguments;
+	f = clean_init();
+	sort_fractal(&f, av[1]);
+	mlx_setup(&f);
+
+	// displays available commands
+	command_list();
+
+
+
+// need to create a hook loop, have the other hooks inside of it.
+//	it should loop the render/generate function constantly.
+// gotta figure out a way for it to always render the right one.
+// should be smoother and maybe it will solve the mouse problem.
+
+//	mlx hook loop ( rendenring function)
+					// inside the rendenring function: all the hoooks
 
 // holds the screen for command.
-	mlx_key_hook(f->win, key_exit, f);
-	mlx_loop(f->mlx);
 
+	mlx_loop_hook(f.mlx, &generate_fractal, &f);
+	// mlx_mouse_hook(f.win, handle_mouse, &f);
+	// mlx_key_hook(f.win, handle_keys, &f);
+	mlx_loop(f.mlx);
 	return (0);
-	
 }
