@@ -6,7 +6,7 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:29:30 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/14 13:18:42 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:56:35 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // mouse = scroll up = 4, scroll down = 5 
 // left click = 1, right click = 2
 
-int handle_mouse (int mousecode, int x, int y, t_data *f)
+int	handle_mouse(int mousecode, int x, int y, t_data *f)
 {
 	(void)x;
 	(void)y;
@@ -26,6 +26,8 @@ int handle_mouse (int mousecode, int x, int y, t_data *f)
 		mouse_zoom(f, 0.9, x, y);
 	if (mousecode == 5)
 		mouse_zoom(f, 1.1, x, y);
+	if (mousecode == 2 && f->set == JULIA)
+		julia_shift (x, y, f);
 	return (0);
 }
 
@@ -33,27 +35,34 @@ int handle_mouse (int mousecode, int x, int y, t_data *f)
 // clean exits on pressing ESC, moves with WASD and arrow keys,
 // shifts colors with shift, shifts resolutions with alt
 
-int handle_keys (int keycode, t_data *f)
+int	handle_keys(int keycode, t_data *f)
 {
-	// printf("%d\n", keycode);
-	if (keycode == 53)
+	if (keycode == ESC)
 		clean_exit(f);
-	if (keycode == 257)
+	if (keycode == LEFT_SHIFT)
 		shift_color(f);
-	if (keycode == UP_ARROW || keycode == W)
+	if (keycode == W || keycode == UP_ARROW)
 		move(f, 'U');
-	if (keycode == DOWN_ARROW || keycode == S)
+	if (keycode == S || keycode == DOWN_ARROW)
 		move(f, 'D');
-	if (keycode == LEFT_ARROW || keycode == A)
+	if (keycode == A || keycode == LEFT_ARROW)
 		move(f, 'L');
-	if (keycode == RIGHT_ARROW || keycode == D)
+	if (keycode == D || keycode == RIGHT_ARROW)
 		move(f, 'R');
 	if (keycode == LEFT_ALT)
-		{
-			f->resolution_shift += 100;
-			if (f->resolution_shift > 300)
-				f->resolution_shift = 0;
-			printf("Max iterations: %d\n", (f->resolution_shift + MAX_ITERATION));
-		}
+	{
+		f->resolution_shift += 50;
+		if (f->resolution_shift > 200)
+			f->resolution_shift = 0;
+		ft_printf("Max iterations: %d\n", (f->resolution_shift + MAX_ITERATION));
+	}
 	return (0);
+}
+
+void	handle_events(t_data *f)
+{
+	mlx_hook(f->win, ON_MOUSE_DW, 0, handle_mouse, f);
+	mlx_key_hook(f->win, handle_keys, f);
+	mlx_hook(f->win, ON_DESTROY, 0, (void *)clean_exit, f);
+	return ;
 }

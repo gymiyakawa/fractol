@@ -6,7 +6,7 @@
 #    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2022/12/14 10:33:17 by gmiyakaw         ###   ########.fr        #
+#    Updated: 2022/12/20 11:31:12 by gmiyakaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIB 	=	libft/libft.a
 LINK 	=	-lmlx  -framework OpenGL -framework AppKit
 
 SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c \
-			parsing.c julia.c events.c
+			render.c julia.c events.c 
 CC	=	gcc
 
 CFLAGS	=	-Wall -Werror -Wextra
