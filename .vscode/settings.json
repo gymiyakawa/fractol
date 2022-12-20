@@ -29,6 +29,11 @@
     "**/.vscode/**"
 ],
 "files.associations": {
-	"math.h": "c"
-}
+	"math.h": "c",
+	"algorithm": "c",
+	"chrono": "c",
+	"unordered_map": "c",
+	"iterator": "c"
+},
+"C_Cpp.errorSquiggles": "disabled"
 }
