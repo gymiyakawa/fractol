@@ -6,7 +6,7 @@
 #    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2022/12/20 11:31:12 by gmiyakaw         ###   ########.fr        #
+#    Updated: 2022/12/20 15:35:04 by gmiyakaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,4 @@ fclean:	clean
 	$(MAKE) fclean -C ./libft
 
 re:			fclean all
-
-#%.o: %.c
-#	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-#$(NAME): $(OBJ)
-#	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
