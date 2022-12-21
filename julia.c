@@ -6,7 +6,7 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:48:41 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/20 13:41:13 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/21 10:18:01 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	julia_shift(int x, int y, t_data *f)
 {
 	f->julia_shiftx = f->min_r + (double)x * (f->max_r - f->min_i) / LENGTH;
 	f->julia_shifty = f->max_i + (double)y * (f->min_i - f->max_i) / HEIGHT;
-	printf("New Julia Parameters: x = %f, y = %f\n", \
-			f->julia_shiftx, f->julia_shifty);
+	ft_printf("New Julia Parameters: x = %d, y = %d\n", \
+			x, y);
 	return ;
 }

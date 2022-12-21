@@ -6,7 +6,7 @@
 /*   By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:50:11 by gmiyakaw          #+#    #+#             */
-/*   Updated: 2022/12/20 13:30:05 by gmiyakaw         ###   ########.fr       */
+/*   Updated: 2022/12/21 10:58:46 by gmiyakaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ t_data	clean_init(void)
 	return (f);
 }
 
-	// initializes the connection to the monitor and checks for errors
-	// finds the address of the first bit in memory corresponding to the image.
-	// Fills in info relative to "bits per pixel", 
+	// initializes the mlx interfaces: Connection, window and image.
+	// 
+	// Following that, finds the address of the first bit in memory 
+	// corresponding to the image.
+	// mlx_get_data_addr fills in the info relative to "bits per pixel", 
 	// "size_line" and "endian" to their respective provided addresses.
 	// 			from /usr/share/man/man3/mlx_new_image.1 :
 	// "bits_per_pixel will be filled with the number of bits needed to 
@@ -63,13 +65,7 @@ void	mlx_setup(t_data	*f)
 		clean_exit (f);
 		return ;
 	}
-	f->win = mlx_new_window(f->mlx, LENGTH, HEIGHT, "new fractal");
-	if (f->win == NULL)
-	{
-		clean_exit(f);
-		ft_printf("MLX window creation error.\n");
-		return ;
-	}
+	win_gen(f);
 	f->img_data->img = mlx_new_image(f->mlx, LENGTH, HEIGHT);
 	if (!f->img_data->img)
 	{
@@ -79,6 +75,32 @@ void	mlx_setup(t_data	*f)
 	}
 	f->img_data->addr = mlx_get_data_addr(f->img_data->img, &f->img_data->bpp, \
 							&f->img_data->line_len, &f->img_data->endian);
+	return ;
+}
+
+// creates MLX window and names it according to the correct fractal set.
+void	win_gen(t_data *f)
+{
+	if (f->set == MANDELBROT)
+	{
+		f->win = mlx_new_window(f->mlx, LENGTH, HEIGHT, "Mandelbrot Set");
+		if (f->win == NULL)
+		{
+			clean_exit(f);
+			ft_printf("MLX window creation error.\n");
+			exit(-1);
+		}
+	}
+	if (f->set == JULIA)
+	{
+		f->win = mlx_new_window(f->mlx, LENGTH, HEIGHT, "Julia Set");
+		if (f->win == NULL)
+		{
+			clean_exit(f);
+			ft_printf("MLX window creation error.\n");
+			exit(-1);
+		}
+	}
 	return ;
 }
 
