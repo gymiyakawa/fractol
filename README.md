@@ -14,16 +14,21 @@ Available arguments = Julia or Mandelbrot
 ## COMMANDS
 
 
-WASD and ARROW KEYS - move image
-MOUSE WHEEL - zoom in/out
-ESC - Quits the program
-LEFT SHIFT - Alternate color patterns
-LEFT ALT - Alternate beween resolutions (MAX_ITERATIONS). 
+    WASD and ARROW KEYS - move image
 
-    The higher the resolution, the more complex and accurate the set at the cost of 
-    greatly increased number of operations per pixels.
+    MOUSE WHEEL - zoom in/out
+
+    ESC - Quits the program
+
+    LEFT SHIFT - Alternate color patterns
+
+    LEFT ALT - Alternate beween resolutions (MAX_ITERATIONS). 
+
+The higher the resolution, the more complex and accurate the set at the cost of greatly increased number of operations per pixels.
     
 ## JULIA SET CONTROLS
+
+            [Julia Set] (https://github.com/gymiyakawa/fractol/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran,%20le%202022-12-21%20%C3%A0%2011.03.01.png?raw=true)
 
 MOUSE RIGHT CLICK
 Sets the parameters for the set using the current (x, y) position of the mouse cursor.
