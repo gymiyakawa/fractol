@@ -1,5 +1,5 @@
 # fractol
-![Mandelbrot Set](https://github.com/gymiyakawa/fractol/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran,%20le%202022-12-20%20%C3%A0%2016.48.51.png=500x500)
+![Mandelbrot Set](https://github.com/gymiyakawa/fractol/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran,%20le%202022-12-20%20%C3%A0%2016.48.51.png?=500x500)
 Fractol project at 42 Quebec.
 
 This project consisted of an introduction to graphical projects. It's requires the use of the MINILIBX, 
