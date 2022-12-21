@@ -3,7 +3,7 @@
 Fractol project at 42 Quebec.
 
 This project consisted of an introduction to graphical projects. It's requires the use of the MINILIBX, 
-a visual library developed in house.
+a visual library developed by 42.
 
 ## Instructions
 
@@ -13,13 +13,13 @@ Available arguments = Julia or Mandelbrot
 
 ## COMMANDS
 
-$
+
 WASD and ARROW KEYS - move image
 MOUSE WHEEL - zoom in/out
 ESC - Quits the program
 LEFT SHIFT - Alternate color patterns
 LEFT ALT - Alternate beween resolutions (MAX_ITERATIONS). 
-$
+
     The higher the resolution, the more complex and accurate the set at the cost of 
     greatly increased number of operations per pixels.
     
@@ -37,9 +37,7 @@ the image, here's a few things that can be adjusted in order to make it run smoo
   The larger the number of pixels, the exponentially larger the number of operations. Default is set at 1250 / 1250.
   Changing the aspect ratio should not deform the fractal but it will make it initallize decentralized.
 
- - Pick a spot on low resolution, zoom in and then change iterations as needed. 
-  Navigating while in the lowest setting (25 Iterations) is a lot smoother, but the image really only comes alive once you
-  pump those numbers up. 
-  
-  
+-  Find the pattern you want to explore and only then up the res.
+    Navigating and zooming in lower resolution will be drastically faster than doing so in higher res.  
+ 
 
