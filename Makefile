@@ -6,7 +6,7 @@
 #    By: gmiyakaw <gmiyakaw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 13:10:06 by gmiyakaw          #+#    #+#              #
-#    Updated: 2022/12/20 15:35:04 by gmiyakaw         ###   ########.fr        #
+#    Updated: 2023/03/27 12:53:13 by gmiyakaw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ NAMELIB	=	libftfractol.a
 
 LIB 	=	libft/libft.a
 
-LINK 	=	-lmlx  -framework OpenGL -framework AppKit
+LINK 	=	-lmlx  -framework OpenGL -framework AppKit -L ./minilibx_opengl_20191021
 
 SRC		=	fractol.c fractol_utils.c mandelbrot.c inits.c color.c \
 			render.c julia.c events.c 
